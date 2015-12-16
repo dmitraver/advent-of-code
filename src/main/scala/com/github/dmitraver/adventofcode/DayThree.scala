@@ -1,11 +1,7 @@
 package com.github.dmitraver.adventofcode
 
-case class Coordinate(x: Int, y: Int) {
-
-  def +(another: Coordinate) = {
-    copy(x = x + another.x, y = y + another.y)
-  }
-}
+import com.github.dmitraver.adventofcode.shared.Coordinate
+import com.github.dmitraver.adventofcode.utils.ResourceLoader
 
 object DayThree {
 

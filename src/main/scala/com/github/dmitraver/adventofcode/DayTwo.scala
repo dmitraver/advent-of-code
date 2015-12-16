@@ -1,5 +1,7 @@
 package com.github.dmitraver.adventofcode
 
+import com.github.dmitraver.adventofcode.utils.ResourceLoader
+
 import scala.io.Source
 
 object DayTwo {
