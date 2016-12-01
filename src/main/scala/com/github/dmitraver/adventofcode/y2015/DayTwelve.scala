@@ -1,11 +1,11 @@
-package com.github.dmitraver.adventofcode
+package com.github.dmitraver.adventofcode.y2015
 
 import play.api.libs.json._
 
 object DayTwelve {
 
   def main(args: Array[String]) {
-    val input = getClass.getClassLoader.getResourceAsStream("day12")
+    val input = getClass.getClassLoader.getResourceAsStream("y2015/day12")
     val json = Json.parse(input)
     println("Sum of all numbers:" + sumAllNumbers(json))
     println("Sum of all numbers without red:" + sumAllNumbersWithRedFiltering(json))

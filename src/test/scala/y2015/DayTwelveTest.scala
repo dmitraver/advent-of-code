@@ -1,4 +1,6 @@
-import com.github.dmitraver.adventofcode.{DayTwelve, DayFive}
+package y2015
+
+import com.github.dmitraver.adventofcode.y2015.DayTwelve
 import org.scalatest.{FunSuite, Matchers}
 import play.api.libs.json.Json
 

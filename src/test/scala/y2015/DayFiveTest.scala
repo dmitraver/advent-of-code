@@ -1,4 +1,6 @@
-import com.github.dmitraver.adventofcode.DayFive
+package y2015
+
+import com.github.dmitraver.adventofcode.y2015.DayFive
 import org.scalatest.{FunSuite, Matchers}
 
 class DayFiveTest extends FunSuite with Matchers {

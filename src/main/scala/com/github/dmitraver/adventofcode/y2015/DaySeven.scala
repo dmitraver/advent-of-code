@@ -1,4 +1,4 @@
-package com.github.dmitraver.adventofcode
+package com.github.dmitraver.adventofcode.y2015
 
 sealed trait Command
 object AND extends Command {

@@ -1,4 +1,6 @@
-import com.github.dmitraver.adventofcode.{DayTwo, DayOne}
+package y2015
+
+import com.github.dmitraver.adventofcode.y2015.DayTwo
 import org.scalatest.{FunSuite, Matchers}
 
 import scala.io.Source

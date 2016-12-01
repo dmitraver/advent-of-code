@@ -1,4 +1,4 @@
-package com.github.dmitraver.adventofcode
+package com.github.dmitraver.adventofcode.y2015
 
 import org.apache.commons.codec.digest.DigestUtils
 

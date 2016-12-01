@@ -1,4 +1,4 @@
-package com.github.dmitraver.adventofcode
+package com.github.dmitraver.adventofcode.y2015
 
 import com.github.dmitraver.adventofcode.utils.ResourceLoader
 
@@ -6,7 +6,7 @@ import scala.io.Source
 
 object DayFive {
   def main(args: Array[String]) {
-    val source = ResourceLoader.fromResource("day5")
+    val source = ResourceLoader.fromResource("y2015/day5")
     println("Number of nice strings: " + countNiceStrings(source))
   }
 

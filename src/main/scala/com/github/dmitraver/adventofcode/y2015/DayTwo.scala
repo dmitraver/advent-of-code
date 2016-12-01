@@ -1,4 +1,4 @@
-package com.github.dmitraver.adventofcode
+package com.github.dmitraver.adventofcode.y2015
 
 import com.github.dmitraver.adventofcode.utils.ResourceLoader
 
@@ -7,10 +7,10 @@ import scala.io.Source
 object DayTwo {
 
   def main(args: Array[String]) {
-    val sourceOne = ResourceLoader.fromResource("day2")
+    val sourceOne = ResourceLoader.fromResource("y2015/day2")
     println("Total paper: " + totalPaper(sourceOne))
 
-    val sourceTwo = ResourceLoader.fromResource("day2")
+    val sourceTwo = ResourceLoader.fromResource("y2015/day2")
     println("Total ribbon: " + totalRibbon(sourceTwo))
   }
 

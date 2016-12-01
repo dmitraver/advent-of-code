@@ -1,4 +1,4 @@
-package com.github.dmitraver.adventofcode
+package com.github.dmitraver.adventofcode.y2015
 
 import com.github.dmitraver.adventofcode.shared.Coordinate
 import com.github.dmitraver.adventofcode.utils.ResourceLoader
@@ -13,10 +13,10 @@ object DayThree {
   }
 
   def main(args: Array[String]) {
-    val streamOne = ResourceLoader.fromResource("day3").toStream
+    val streamOne = ResourceLoader.fromResource("y2015/day3").toStream
     println("Houses: " + countHouses(streamOne))
 
-    val streamTwo = ResourceLoader.fromResource("day3").toStream
+    val streamTwo = ResourceLoader.fromResource("y2015/day3").toStream
     println("Houses with robo:" + countHousesWithRobo(streamTwo))
   }
 

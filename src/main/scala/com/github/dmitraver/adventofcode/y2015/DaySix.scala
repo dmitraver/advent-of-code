@@ -1,4 +1,4 @@
-package com.github.dmitraver.adventofcode
+package com.github.dmitraver.adventofcode.y2015
 
 import com.github.dmitraver.adventofcode.shared.Coordinate
 import com.github.dmitraver.adventofcode.utils.ResourceLoader
@@ -39,7 +39,7 @@ object DaySix {
 
   def main(args: Array[String]) {
     val grid = Grid(1000, 1000)
-    ResourceLoader.fromResource("day6").getLines().foreach { str =>
+    ResourceLoader.fromResource("y2015/day6").getLines().foreach { str =>
       val numbers = numbersPattern.findAllIn(str).toList.map(_.toInt)
       val left = Coordinate(numbers(0), numbers(1))
       val top = Coordinate(numbers(2), numbers(3))

@@ -1,4 +1,4 @@
-package com.github.dmitraver.adventofcode
+package com.github.dmitraver.adventofcode.y2015
 
 import com.github.dmitraver.adventofcode.utils.ResourceLoader
 
@@ -9,10 +9,10 @@ object DayOne {
   val toFloor = (parenthesis: Char) => if (parenthesis == '(') 1 else -1
 
   def main(args: Array[String]) {
-    val sourceOne = ResourceLoader.fromResource("day1")
+    val sourceOne = ResourceLoader.fromResource("y2015/day1")
     println("Floors: " + countFloors(sourceOne))
 
-    val sourceTwo = ResourceLoader.fromResource("day1")
+    val sourceTwo = ResourceLoader.fromResource("y2015/day1")
     println("Basement: " + findBasement(sourceTwo))
   }
 
