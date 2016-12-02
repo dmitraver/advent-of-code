@@ -12,7 +12,7 @@ object DayOne {
   }
 
   def easterBunnyHQDistance(source: Source) = {
-    val finalCoordinate = source.getLines().flatMap(s => s.split(", ")).foldLeft(Coordinate(North(), 0, 0)) ((coordinate, nextMove) => coordinate.move(nextMove(0), nextMove.substring(1).toInt))
+    val finalCoordinate = source.getLines().flatMap(s => s.split(", ")).foldLeft(DirectedCoordinate(North(), 0, 0)) ((coordinate, nextMove) => coordinate.move(nextMove(0), nextMove.substring(1).toInt))
     Math.abs(finalCoordinate.x) + Math.abs(finalCoordinate.y)
   }
 }
@@ -23,7 +23,7 @@ case class South() extends Direction
 case class West() extends Direction
 case class East() extends Direction
 
-case class Coordinate(direction: Direction, x: Int, y: Int) {
+case class DirectedCoordinate(direction: Direction, x: Int, y: Int) {
 
   def move(c: Char, distance: Int) = c match {
       case 'R' =>
