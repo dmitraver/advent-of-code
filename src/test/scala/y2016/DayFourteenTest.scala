@@ -8,4 +8,8 @@ class DayFourteenTest extends FunSuite with Matchers {
   test("Index that produces 64th one-time pad key") {
     DayFourteen.findIndexOfTheLastKey("abc") shouldBe 22728
   }
+
+  test("Index that produces 64th one-time pad key extended") {
+    DayFourteen.findIndexOfTheLastKeyExtended("abc") shouldBe 22551
+  }
 }

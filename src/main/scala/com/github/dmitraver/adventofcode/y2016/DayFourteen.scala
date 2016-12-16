@@ -10,27 +10,41 @@ object DayFourteen {
 
   def main(args: Array[String]): Unit = {
     println("Last index of 64th OTP key: " + findIndexOfTheLastKey("jlmsuwbz"))
+    println("Last index of 64th OTP key extended: " + findIndexOfTheLastKeyExtended("jlmsuwbz"))
+  }
+
+  def sum: Int => Int = {
+    x: Int => x + 1
   }
 
   def findIndexOfTheLastKey(salt: String) = {
-    Stream.from(0).filter(i => hasKey(i, salt)).take(64).last
+    Stream.from(0).filter(i => hasKey(i, salt, computeDigest)).take(64).last
   }
 
-  def computeDigest: String => String = Memo.withHashMap {
+  def findIndexOfTheLastKeyExtended(salt: String) = {
+    Stream.from(0).filter(i => hasKey(i, salt, computeDigestWithMemo)).take(64).last
+  }
+
+  def computeDigest: String => String = {
     input: String => DigestUtils.md5Hex(input)
   }
 
-  def hasKey(index: Int, salt: String) = {
-    threeLettersPattern.findFirstIn(computeDigest(salt + index)) match {
-      case Some(triplet) => (index + 1 to index + 1000).exists(i => computeDigest(salt + i) contains triplet.substring(0,1) * 5)
+  val computeDigestWithMemo = Memo.withHashMap {
+    input: String => Function.chain(List.fill(2017)(computeDigest)) (input)
+  }
+
+  def hasKey(index: Int, salt: String, digest: String => String) = {
+    threeLettersPattern.findFirstIn(digest(salt + index)) match {
+      case Some(triplet) => (index + 1 to index + 1000).exists(i => digest(salt + i) contains triplet.substring(0, 1) * 5)
       case None => false
     }
   }
+
 }
 
 object Memo {
 
-  def withHashMap[I, O] (f: I => O) = new mutable.HashMap[I, O] {
+  def withHashMap[I, O](f: I => O) = new mutable.HashMap[I, O] {
     override def apply(key: I) = getOrElseUpdate(key, f(key))
   }
 }
