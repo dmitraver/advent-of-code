@@ -9,7 +9,8 @@ object DayFifteen {
 
   def main(args: Array[String]) {
     val instructions = ResourceLoader.fromResource("y2016/day15").getLines().toList
-    println("First time to press the button: " + findTimeToPressButton(instructions))
+    println("First time to press the button (Part 1): " + findTimeToPressButton(instructions))
+    println("First time to press the button (Part 2): " + findTimeToPressButton(instructions :+ "Disc #7 has 11 positions; at time=0, it is at position 0."))
   }
 
   def findTimeToPressButton(instructions: List[String]) = {
