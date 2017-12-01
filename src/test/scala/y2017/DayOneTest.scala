@@ -6,9 +6,17 @@ import org.scalatest.{FunSuite, Matchers}
 class DayOneTest extends FunSuite with Matchers {
 
   test("Captcha part 1") {
-    DayOne.captcha("1122".toVector) shouldEqual 3
-    DayOne.captcha("1111".toVector) shouldEqual 4
-    DayOne.captcha("1234".toVector) shouldEqual 0
-    DayOne.captcha("91212129".toVector) shouldEqual 9
+    DayOne.captchaOne("1122".toVector) shouldEqual 3
+    DayOne.captchaOne("1111".toVector) shouldEqual 4
+    DayOne.captchaOne("1234".toVector) shouldEqual 0
+    DayOne.captchaOne("91212129".toVector) shouldEqual 9
+  }
+
+  test("Captcha part 2") {
+    DayOne.captchaTwo("1212".toVector) shouldEqual 6
+    DayOne.captchaTwo("1221".toVector) shouldEqual 0
+    DayOne.captchaTwo("123425".toVector) shouldEqual 4
+    DayOne.captchaTwo("123123".toVector) shouldEqual 12
+    DayOne.captchaTwo("12131415".toVector) shouldEqual 4
   }
 }
