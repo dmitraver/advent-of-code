@@ -42,7 +42,28 @@ object DaySix {
     loop(1, banks)
   }
 
+  def firstRepetitiveConfiguration(banks: Vector[Int]): Vector[Int] = {
+    val states = mutable.Set[Vector[Int]]()
+    def loop(banks: Vector[Int]): Vector[Int] = {
+      val newState = redistribute(banks)
+      if (states.contains(newState)) newState
+      else {
+        states += newState
+        loop(newState)
+      }
+    }
+
+    loop(banks)
+  }
+
+  def loopLength(banks: Vector[Int]): Int = {
+    val repetetive = firstRepetitiveConfiguration(banks)
+    countRedistributionCycles(repetetive) - 1
+  }
+
   def main(args: Array[String]): Unit = {
-    println("Cycles count: " + countRedistributionCycles(Vector(0, 5, 10, 0, 11, 14, 13, 4, 11, 8, 8, 7, 1, 4, 12, 11)))
+    val input = Vector(0, 5, 10, 0, 11, 14, 13, 4, 11, 8, 8, 7, 1, 4, 12, 11)
+    println("Cycles count: " + countRedistributionCycles(input))
+    println("Repetitive loop length: " + loopLength(input))
   }
 }

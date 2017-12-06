@@ -8,4 +8,8 @@ class DaySixTest extends FunSuite with Matchers {
   test("Count cycles 1") {
     DaySix.countRedistributionCycles(Vector(0, 2, 7, 0)) shouldBe 5
   }
+
+  test("Loop length 2") {
+    DaySix.loopLength(Vector(0, 2, 7, 0)) shouldBe 4
+  }
 }
