@@ -11,25 +11,37 @@ object DaySeven {
   val topProgramRegexp = "(\\w+)\\s\\((\\d+)\\)".r
   val programRegexp = "(\\w+)\\s\\((\\d+)\\)\\s+->\\s+(.*)".r
 
-  def parseInput(input: Vector[String]): Map[String, List[String]] = {
-    val map = new mutable.HashMap[String, List[String]]()
+  def parseInput(input: Vector[String]): Map[String, Program] = {
+    val map = new mutable.HashMap[String, Program]()
     input.map {
-      case topProgramRegexp(name, weight) => map.put(name, List())
-      case programRegexp(name, weight, values) => map.put(name, values.split(", ").toList)
+      case topProgramRegexp(name, weight) => map.put(name, Program(name, weight.toInt, List()))
+      case programRegexp(name, weight, values) => map.put(name, Program(name, weight.toInt, values.split(", ").toList))
     }
 
     map.toMap // well, we don't want mutable crap to be passed around
   }
 
-  def findBottomProgram(input: Vector[String]): Option[String] = {
-    val programsDependencies = parseInput(input)
-    val values = programsDependencies.valuesIterator.flatten.toSet
-    val keys = programsDependencies.keys
-    keys.find(name => !values.contains(name))
+  def findBottomProgram(programs: Map[String, Program]): String = {
+    val values = programs.valuesIterator.map(_.programsAbove).flatten.toSet
+    val keys = programs.keys
+    keys.find(name => !values.contains(name)).get
+  }
+
+  def getHeight(programName: String, input: Map[String, Program]): Int = {
+    val rootProgram = input(programName)
+    val leaves = rootProgram.programsAbove
+    if (leaves.isEmpty) rootProgram.weight
+    else {
+      rootProgram.weight + leaves.foldLeft(0) { (sum, next) =>
+        sum + getHeight(next, input)
+      }
+    }
   }
 
   def main(args: Array[String]): Unit = {
     val input = ResourceLoader.fromResource("y2017/day7").getLines().toVector
-    println("Bottom program name: " + findBottomProgram(input))
+    val programs = parseInput(input)
+    val bottomProgram = findBottomProgram(programs)
+    println("Bottom program name: " + bottomProgram)
   }
 }
