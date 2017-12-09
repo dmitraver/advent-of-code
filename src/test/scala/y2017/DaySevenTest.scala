@@ -23,7 +23,14 @@ class DaySevenTest extends FunSuite with Matchers {
       |cntj (57)""".stripMargin
 
   test("Bottom program name") {
-    //DaySeven.findBottomProgram(Source.fromString(input).getLines().toVector) shouldBe Some("tknk")
+    val programs = DaySeven.parseInput(Source.fromString(input).getLines().toVector)
+    DaySeven.findBottomProgram(programs) shouldBe "tknk"
+  }
+
+  test("Corrected program weight") {
+    val programs = DaySeven.parseInput(Source.fromString(input).getLines().toVector)
+    val bottomProgram = DaySeven.findBottomProgram(programs)
+    DaySeven.getCorrectedProgramWeight(bottomProgram, programs) shouldBe 60
   }
 
 }

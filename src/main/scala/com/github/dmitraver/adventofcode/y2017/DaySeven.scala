@@ -27,15 +27,26 @@ object DaySeven {
     keys.find(name => !values.contains(name)).get
   }
 
-  def getHeight(programName: String, input: Map[String, Program]): Int = {
-    val rootProgram = input(programName)
-    val leaves = rootProgram.programsAbove
-    if (leaves.isEmpty) rootProgram.weight
-    else {
-      rootProgram.weight + leaves.foldLeft(0) { (sum, next) =>
-        sum + getHeight(next, input)
+  def getCorrectedProgramWeight(programName: String, input: Map[String, Program]): Int = {
+    def loop(programName: String): (Boolean, Int) = {
+      val rootProgram = input(programName)
+      val leaves = rootProgram.programsAbove
+      if (leaves.isEmpty) (true, rootProgram.weight)
+      else {
+        val weights = leaves.map(name => (name, loop(name)))
+        weights.find(e => !e._2._1) match {
+          case Some((name, (bool, weight))) => (false, weight)
+          case None =>
+            val max = weights.maxBy(_._2._2)
+            val min = weights.minBy(_._2._2)
+            val diff = max._2._2 - min._2._2
+            if (diff > 0) (false, input(max._1).weight - diff)
+            else (true, rootProgram.weight + weights.foldLeft(0)((acc, e) => acc + e._2._2))
+        }
       }
     }
+
+    loop(programName)._2
   }
 
   def main(args: Array[String]): Unit = {
@@ -43,5 +54,6 @@ object DaySeven {
     val programs = parseInput(input)
     val bottomProgram = findBottomProgram(programs)
     println("Bottom program name: " + bottomProgram)
+    println("Corrected program weight: " + getCorrectedProgramWeight(bottomProgram, programs))
   }
 }
