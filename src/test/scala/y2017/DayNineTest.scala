@@ -17,4 +17,14 @@ class DayNineTest extends FunSuite with Matchers {
     totalScore(groupParser.parse("{{<a!>},{<a!>},{<a!>},{<ab>}}").option.get) shouldBe 3
   }
 
+  test("Total garbage length") {
+    totalGarbageLength(garbageParser.parse("<>").option.get) shouldBe 0
+    totalGarbageLength(garbageParser.parse("<random characters>").option.get) shouldBe 17
+    totalGarbageLength(garbageParser.parse("<<<<>").option.get) shouldBe 3
+    totalGarbageLength(garbageParser.parse("<{!>}>").option.get) shouldBe 2
+    totalGarbageLength(garbageParser.parse("<!!>").option.get) shouldBe 0
+    totalGarbageLength(garbageParser.parse("<!!!>>").option.get) shouldBe 0
+    totalGarbageLength(garbageParser.parse("<{o\"i!a,<{i<a>").option.get) shouldBe 10
+  }
+
 }
