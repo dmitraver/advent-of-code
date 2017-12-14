@@ -30,20 +30,32 @@ object DayThirteen {
     }
   }
 
-  private def isCaught(time: Time, layers: Map[Depth, Range]): Boolean = {
-    scannerPositionAtTime(time, time, layers) == 0
+  private def isCaught(time: Time, layer: Depth, layers: Map[Depth, Range]): Boolean = {
+    scannerPositionAtTime(time, layer, layers) == 0
   }
 
   def getSeverity(layers: Map[Depth, Range]): Int = {
     (0 to layers.maxBy(_._1)._1).foldLeft(0) { (acc, time) =>
-      if(isCaught(time, layers)) acc + (time * layers(time))
+      if(isCaught(time, time, layers)) acc + (time * layers(time))
       else acc
     }
+  }
+
+  def calculateDelay(layers: Map[Depth, Range]): Int = {
+    val delays = Stream.from(0, 1)
+    val maxDepth = layers.maxBy(_._1)._1
+    delays.dropWhile { delay =>
+      val delaywithIndex = (delay to delay +  maxDepth).zipWithIndex
+      delaywithIndex exists { case (delay, i) =>
+        isCaught(delay, i, layers)
+      }
+    }.head
   }
 
   def main(args: Array[String]): Unit = {
     val input = ResourceLoader.fromResource("y2017/day13").getLines().toVector
     val layers = processInput(input)
     println("Severity: " + getSeverity(layers))
+    println("Delay: "+ calculateDelay(layers))
   }
 }

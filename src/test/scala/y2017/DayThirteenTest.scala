@@ -18,4 +18,9 @@ class DayThirteenTest extends FunSuite with Matchers {
     DayThirteen.getSeverity(layers) shouldBe 24
   }
 
+  test("Delay") {
+    val layers = DayThirteen.processInput(Source.fromString(input).getLines().toVector)
+    DayThirteen.calculateDelay(layers) shouldBe 10
+  }
+
 }
