@@ -10,6 +10,7 @@ libraryDependencies ++= Seq(
   "com.typesafe.play" % "play-json_2.11" % "2.4.6",
 
   // TODO: replace with my own parser combinator library
-  "org.tpolecat" %% "atto-core"  % "0.6.0"
+  "org.tpolecat" %% "atto-core"  % "0.6.0",
+  "org.typelevel" %% "cats-core" % "1.0.0-RC1"
 )
     
