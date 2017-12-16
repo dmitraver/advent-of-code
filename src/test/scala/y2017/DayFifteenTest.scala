@@ -9,4 +9,8 @@ class DayFifteenTest extends FunSuite with Matchers {
     DayFifteen.judgeCount(65, 8921) shouldBe 588
   }
 
+  test("Judges final count") {
+    DayFifteen.judgeFinalCount(65, 8921) shouldBe 309
+  }
+
 }
