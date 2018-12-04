@@ -23,6 +23,12 @@ object Day4 {
     println(result)
 
     val (guardId, mostAsleep) = result.maxBy(_._2)
+
+
+    val ranges = map(guardId)
+    val mask = Vector.fill(50)(0)
+    val r = ranges.foldLeft(mask)((acc, range) => range.foldLeft(acc)((a, v) => a.updated(v - 1, a(v - 1) + 1)))
+    println(r)
   }
 
   private def parseInput(input: Vector[String]): Vector[Record] = {
