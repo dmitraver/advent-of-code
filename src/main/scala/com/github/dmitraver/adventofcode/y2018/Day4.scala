@@ -15,7 +15,8 @@ object Day4 {
 
   def main(args: Array[String]): Unit = {
     val input = ResourceLoader.fromResource("y2018/day4").getLines().toVector
-    println("Most asleep: " + partOne(input))
+    println("Part one " + partOne(input))
+    println("Part two: " + partTwo(input))
   }
 
   private def parseInput(input: Vector[String]): Vector[Record] = {
@@ -47,6 +48,18 @@ object Day4 {
 
     val mask = Vector.fill(59)(0)
     val minute = ranges.foldLeft(mask)((acc, range) => range.foldLeft(acc)((a, v) => a.updated(v, a(v) + 1))).zipWithIndex.maxBy(_._1)._2
+    guardId * minute
+  }
+
+  def partTwo(input: Vector[String]): Int = {
+    val records = parseInput(input)
+    val guardsToShifts = groupShiftsByGuards(records)
+    val res = guardsToShifts.map { case (key, value) =>
+      val mask = Vector.fill(59)(0)
+      key -> value.foldLeft(mask)((acc, range) => range.foldLeft(acc)((a, v) => a.updated(v, a(v) + 1))).zipWithIndex.maxBy(_._1)
+    }
+
+    val (guardId, (value, minute)) = res.maxBy(_._2._1)
     guardId * minute
   }
 
