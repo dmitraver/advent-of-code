@@ -7,7 +7,7 @@ import scala.annotation.tailrec
 object Day9 {
 
   def main(args: Array[String]): Unit = {
-    println("Day one: " + playMarbleGame(Vector(0), Map.empty, 0, 1, 411, 0, 7117).maxBy(_._2))\
+    println("Day one: " + playMarbleGame(Vector(0), Map.empty, 0, 1, 411, 0, 7117).maxBy(_._2))
   }
 
   @tailrec

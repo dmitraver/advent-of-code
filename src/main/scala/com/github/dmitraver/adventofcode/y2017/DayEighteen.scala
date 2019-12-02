@@ -25,16 +25,7 @@ object DayEighteen {
   val jgzCommandPattern = "jgz ([\\w|\\d+]+) ([\\w|\\d+]+)".r
 
   def processCommands(commands: Vector[String]): Int = {
-    def go(commandIndex: Int, registers: Map[Char, Int]): Int = {
-      if (commandIndex < 0 || commandIndex > commands.size) {
-        -1
-      } else {
-        val command = commands(commandIndex)
-        command match {
-          case sndCommandPattern()
-        }
-      }
-    }
+    ???
   }
 
   def main(args: Array[String]): Unit = {
